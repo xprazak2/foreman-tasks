@@ -70,7 +70,7 @@ module ForemanTasks
                                                :'foreman_tasks/api/recurring_logics' => [:cancel] }, :resource_type => ForemanTasks::RecurringLogic.name
         end
 
-        # add_all_permissions_to_default_roles
+        add_all_permissions_to_default_roles
 
         logger :dynflow, :enabled => true
         logger :action, :enabled => true
