@@ -7,8 +7,6 @@ module ForemanTasks
         after_create :plan_hook_action
         after_update :plan_hook_action
         after_destroy :plan_hook_action
-
-        alias_method_chain :save, :dynflow_task_wrap
       end
 
       # These three *_action methods are called before the save/destroy actually occurs
@@ -21,8 +19,8 @@ module ForemanTasks
       # @override
       def destroy_action; end
 
-      def save_with_dynflow_task_wrap(*args)
-        dynflow_task_wrap(:save) { save_without_dynflow_task_wrap(*args) }
+      def save(*args)
+        dynflow_task_wrap(:save) { super(*args) }
       end
 
       def save!(*args)

@@ -70,7 +70,7 @@ module ForemanTasks
                                                :'foreman_tasks/api/recurring_logics' => [:cancel] }, :resource_type => ForemanTasks::RecurringLogic.name
         end
 
-        add_all_permissions_to_default_roles
+        # add_all_permissions_to_default_roles
 
         logger :dynflow, :enabled => true
         logger :action, :enabled => true
@@ -140,7 +140,7 @@ module ForemanTasks
     config.to_prepare do
       ForemanTasks.dynflow.eager_load_actions! if ForemanTasks.dynflow.initialized?
 
-      Authorizer.send(:include, AuthorizerExt)
+      Authorizer.send(:prepend, AuthorizerExt)
     end
 
     config.after_initialize do
